@@ -11,6 +11,10 @@ spec:
     path: gitops/manifests/tekton
     repoURL: https://github.com/masauve/keycloak-x-openshift
     targetRevision: main
+  ignoreDifferences:
+  - kind: Pipeline
+    jsonPointers:
+    - /metadata/labels
   syncPolicy:
     automated:
       prune: false
