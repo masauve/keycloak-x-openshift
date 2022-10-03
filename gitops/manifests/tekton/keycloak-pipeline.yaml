@@ -3,6 +3,8 @@ kind: Pipeline
 metadata:
   name: keycloak-pipeline
   namespace: sso-dev
+  labels:
+    app.kubernetes.io/instance: keycloak-pipeline-application
 spec:
   tasks:
     - name: git-clone
