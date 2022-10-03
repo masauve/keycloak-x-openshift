@@ -21,7 +21,7 @@ spec:
   instances: 1
   hostname: keycloak-dev.apps.home.myocp.net
   tlsSecret: my-tls-dev-cert
-  image: quay.io/msauve/keycloak-extensions:v1
+  image: quay.io/msauve/keycloak-custom:latest
   experimental:
     env:
        - name: KEYCLOAK_LOGLEVEL

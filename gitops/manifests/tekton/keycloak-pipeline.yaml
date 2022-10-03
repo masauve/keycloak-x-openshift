@@ -1,0 +1,100 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: keycloak-pipeline
+  namespace: sso-dev
+spec:
+  tasks:
+    - name: git-clone
+      params:
+        - name: url
+          value: 'https://github.com/masauve/keycloak-x-openshift'
+        - name: submodules
+          value: 'true'
+        - name: depth
+          value: '1'
+        - name: sslVerify
+          value: 'true'
+        - name: crtFileName
+          value: ca-bundle.crt
+        - name: deleteExisting
+          value: 'true'
+        - name: verbose
+          value: 'true'
+        - name: gitInitImage
+          value: >-
+            gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:v0.29.0
+        - name: userHome
+          value: /tekton/home
+      taskRef:
+        kind: Task
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: buildworkspace
+    - name: keycloak-policies-install
+      params:
+        - name: MAVEN_IMAGE
+          value: >-
+            image-registry.openshift-image-registry.svc:5000/openshift/java:latest
+        - name: GOALS
+          value:
+            - install
+        - name: PROXY_PROTOCOL
+          value: http
+        - name: CONTEXT_DIR
+          value: policies
+      runAfter:
+        - git-clone
+      taskRef:
+        kind: ClusterTask
+        name: maven
+      workspaces:
+        - name: source
+          workspace: buildworkspace
+        - name: maven-settings
+          workspace: buildworkspace
+    - name: push-image
+      params:
+        - name: IMAGE
+          value: quay.io/msauve/keycloak-custom
+        - name: BUILDER_IMAGE
+          value: >-
+            registry.redhat.io/rhel8/buildah@sha256:0a86ecbdfbe86e9d225b7fe4b090a0dd6d323f8afdfdf2bd933ff223ddb53320
+        - name: STORAGE_DRIVER
+          value: vfs
+        - name: DOCKERFILE
+          value: ./Dockerfile
+        - name: CONTEXT
+          value: .
+        - name: TLSVERIFY
+          value: 'true'
+        - name: FORMAT
+          value: oci
+        - name: SKIP_PUSH
+          value: 'false'
+      runAfter:
+        - keycloak-policies-install
+      taskRef:
+        kind: ClusterTask
+        name: buildah-1-8-0
+      workspaces:
+        - name: source
+          workspace: buildworkspace
+    - name: rollout-keycloak
+      params:
+        - name: SCRIPT
+          value: oc rollout restart statefulset/keycloak
+        - name: VERSION
+          value: latest
+      runAfter:
+        - push-image
+      taskRef:
+        kind: ClusterTask
+        name: openshift-client
+  workspaces:
+    - name: buildworkspace
+      optional: false
+  params: []
+  resources: []
+  finally: []
