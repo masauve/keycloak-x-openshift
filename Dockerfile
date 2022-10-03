@@ -6,7 +6,7 @@ ENV KC_FEATURES=web-authn,openshift-integration
 ENV KC_DB=postgres
 ENV KEYCLOAK_LOGLEVEL=debug
 # Install custom providers
-COPY providers/*jar /opt/keycloak/providers/
+COPY policies/target/*jar /opt/keycloak/providers/
 COPY themes /opt/keycloak/themes
 RUN /opt/keycloak/bin/kc.sh build
 
