@@ -1,0 +1,19 @@
+{
+  "policies": [
+    {
+      "name": "Email match domain",
+      "fileName": "match-email-domain.js",
+      "description": "A policy matching domain with redhat.com"
+    },
+    {
+      "name": "Always Grant",
+      "fileName": "always-grant.js",
+      "description": "A policy that always grants access"
+    },
+    {
+      "name": "Only Owner",
+      "fileName": "only-owner.js",
+      "description": "A policy that always grants access to resource owners"
+    }
+  ]
+}
