@@ -1,8 +1,4 @@
-    /*
-    * Template for JavaScript based authenticator's.
-    * See org.keycloak.authentication.authenticators.browser.ScriptBasedAuthenticatorFactory
-    */
-
+AuthenticationFlowError = Java.type("org.keycloak.authentication.AuthenticationFlowError");
 
     /**
     * An example authenticate function.
@@ -27,7 +23,5 @@ function authenticate(context) {
     var username = user ? user.username : "anonymous";
     LOG.info(script.name + " ALLO:  " + username);
 
-
-    context.success();
 }
 
