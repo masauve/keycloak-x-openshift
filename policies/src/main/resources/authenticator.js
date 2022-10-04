@@ -3,8 +3,6 @@
     * See org.keycloak.authentication.authenticators.browser.ScriptBasedAuthenticatorFactory
     */
 
-    // import enum for error lookup
-AuthenticationFlowError = Java.type("org.keycloak.authentication.AuthenticationFlowError");
 
     /**
     * An example authenticate function.
