@@ -21,7 +21,8 @@ AuthenticationFlowError = Java.type("org.keycloak.authentication.AuthenticationF
 function authenticate(context) {
 
     var username = user ? user.username : "anonymous";
-    LOG.info(script.name + " ALLO:  " + username);
+    LOG.info(script.name + " BONJOUR:  " + username);
+    context.success();
 
 }
 
