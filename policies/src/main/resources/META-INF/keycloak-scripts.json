@@ -1,4 +1,11 @@
 {
+   "authenticators": [
+        {
+            "name": "Demo Authenticator",
+            "fileName": "authenticator.js",
+            "description": "Demo Authenticator from a JS file"
+        }
+    ],
   "policies": [
     {
       "name": "Email match domain",
