@@ -2,7 +2,7 @@ FROM quay.io/keycloak/keycloak:19.0.2 as builder
 
 ENV KC_HEALTH_ENABLED=true
 ENV KC_METRICS_ENABLED=true
-ENV KC_FEATURES=web-authn,openshift-integration
+ENV KC_FEATURES=web-authn,openshift-integration,scripts
 ENV KC_DB=postgres
 ENV KEYCLOAK_LOGLEVEL=debug
 # Install custom providers
