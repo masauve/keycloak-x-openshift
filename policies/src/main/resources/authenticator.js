@@ -1,4 +1,3 @@
-AuthenticationFlowError = Java.type("org.keycloak.authentication.AuthenticationFlowError");
 
     /**
     * An example authenticate function.
