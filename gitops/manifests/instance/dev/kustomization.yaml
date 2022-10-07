@@ -6,4 +6,4 @@ namespace: sso-dev
 resources:
   - keycloak-cert.yaml
   - keycloak-v2.yaml
-
+  - realm-webauthn.yaml
