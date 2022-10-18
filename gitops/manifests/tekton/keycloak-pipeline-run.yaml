@@ -6,12 +6,14 @@ metadata:
     argocd.argoproj.io/sync-options: Prune=false
   generateName: keycloak-rollout-run-
 spec:
+  serviceAccountName: chains-runner
   pipelineRef:
     name: keycloak-pipeline
-  params:
-    - name: "url"
-      value: "https://github.com/masauve/keycloak-x-openshift"
+  podTemplate:
+     securityContext:
+        runAsNonRoot: false
   workspaces:
     - name: buildworkspace
       persistentVolumeClaim:
         claimName: pipeline-workspace
+
