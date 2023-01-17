@@ -3,7 +3,7 @@ kind: KeycloakRealmImport
 metadata:
   name: keycloak-realm-import
   labels:
-    app: sso
+    app: keycloak
   namespace: keycloak-dev
 spec:
   keycloakCRName: keycloak
