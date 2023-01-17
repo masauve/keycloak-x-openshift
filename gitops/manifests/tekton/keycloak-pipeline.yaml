@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: keycloak-pipeline
-  namespace: sso-dev
+  namespace: keycloak-dev
 spec:
   tasks:
     - name: git-clone

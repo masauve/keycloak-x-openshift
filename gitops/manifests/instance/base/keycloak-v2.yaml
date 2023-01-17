@@ -4,7 +4,7 @@ metadata:
   name: keycloak
   labels:
     app: keycloak
-  namespace: sso
+  namespace: keycloak-dev
 spec:
   serverConfiguration:
     - name: features
@@ -14,11 +14,11 @@ spec:
     - name: db-password
       value: sso1234
     - name: db-url
-      value: jdbc:postgresql://postgresql.sso.svc.cluster.local:5432/keycloak
+      value: jdbc:postgresql://postgresql.keycloak-dev.svc.cluster.local:5432/keycloak
     - name: db-username
       value: keycloak
-    - name: cache
+    - name: caches
       value: ispn
   instances: 1
-  hostname: keycloak.apps.home.myocp.net
+  hostname: keycloak-dev.apps.home.myocp.net
   tlsSecret: my-tls-cert

@@ -2,11 +2,11 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: my-tls-secret
-  namespace: sso
+  namespace: keycloak-quarkus
 spec:
   secretName: my-tls-cert
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
   dnsNames:
-  - keycloak.apps.home.myocp.net
+  - keycloak-dev.apps.home.myocp.net
