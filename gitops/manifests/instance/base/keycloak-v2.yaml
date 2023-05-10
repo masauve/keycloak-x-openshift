@@ -19,6 +19,6 @@ spec:
       value: keycloak
     - name: caches
       value: ispn
-  instances: 1
+  instances: 3
   hostname: keycloak-dev.apps.home.myocp.net
   tlsSecret: my-tls-cert
