@@ -5,6 +5,11 @@ metadata:
   labels:
     app: keycloak
 spec:
+  instances: 1
+  hostname: 
+     hostname: keycloak.apps.home.myocp.net
+  tlsSecret: my-tls-dev-cert
+  image: quay.io/msauve/keycloak-custom:latest
   serverConfiguration:
     - name: features
       value: web-authn,openshift-integration
@@ -18,7 +23,3 @@ spec:
       value: keycloak
     - name: cache
       value: ispn
-  instances: 1
-  hostname: keycloak-dev.apps.home.myocp.net
-  tlsSecret: my-tls-dev-cert
-  image: quay.io/msauve/keycloak-custom:latest

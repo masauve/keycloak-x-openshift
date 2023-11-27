@@ -1,4 +1,4 @@
-FROM quay.io/keycloak/keycloak:19.0.2 as builder
+FROM registry.redhat.io/rhbk/keycloak-rhel9:latest as builder
 
 ENV KC_HEALTH_ENABLED=true
 ENV KC_METRICS_ENABLED=true
@@ -10,7 +10,7 @@ COPY policies/target/*jar /opt/keycloak/providers/
 COPY themes /opt/keycloak/themes
 RUN /opt/keycloak/bin/kc.sh build
 
-FROM quay.io/keycloak/keycloak:19.0.2
+FROM registry.redhat.io/rhbk/keycloak-rhel9:latest
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 WORKDIR /opt/keycloak
 # for demonstration purposes only, please make sure to use proper certificates in production instead

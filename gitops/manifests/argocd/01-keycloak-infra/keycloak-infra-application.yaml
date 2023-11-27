@@ -1,14 +1,14 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: keycloak-pipeline-application
+  name: keycloak-infra-application
 spec:
   destination:
     namespace: openshift-gitops
     server: https://kubernetes.default.svc
-  project: keycloak-pipeline-project
+  project: keycloak-infra-project
   source:
-    path: gitops/manifests/tekton
+    path: gitops/manifests/infra
     repoURL: https://github.com/masauve/keycloak-x-openshift
     targetRevision: main
   ignoreDifferences:

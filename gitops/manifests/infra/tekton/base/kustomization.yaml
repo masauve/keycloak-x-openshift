@@ -4,6 +4,6 @@ kind: Kustomization
 namespace: rhbk
 
 resources:
-  - keycloak-cert.yaml
-  - keycloak-v2.yaml
-  - realm-webauthn.yaml
+#  - namespace.yaml
+  - workspace-pvc.yaml
+  - keycloak-pipeline.yaml

@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: keycloak-pipeline
-  namespace: keycloak-dev
+  namespace: rhbk
 spec:
   tasks:
     - name: git-clone
@@ -27,7 +27,7 @@ spec:
         - name: userHome
           value: /tekton/home
       taskRef:
-        kind: Task
+        kind: ClusterTask
         name: git-clone
       workspaces:
         - name: output
