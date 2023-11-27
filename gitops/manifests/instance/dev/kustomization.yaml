@@ -4,6 +4,9 @@ kind: Kustomization
 namespace: rhbk
 
 resources:
+  - db-secret.yaml
+  - db-deploymentconfig.yaml
+  - db-svc.yaml
   - keycloak-cert.yaml
   - keycloak-v2.yaml
   - realm-webauthn.yaml
