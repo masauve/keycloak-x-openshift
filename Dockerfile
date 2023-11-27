@@ -14,7 +14,7 @@ FROM registry.redhat.io/rhbk/keycloak-rhel9:latest
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 WORKDIR /opt/keycloak
 # for demonstration purposes only, please make sure to use proper certificates in production instead
-ENV KC_DB_URL=jdbc:postgresql://postgresql.sso-dev.svc.cluster.local:5432/keycloak
+ENV KC_DB_URL=jdbc:postgresql://postgresql:5432/keycloak
 ENV KC_DB_USERNAME=keycloak
 ENV KC_DB_PASSWORD=sso1234
 ENV KC_HOSTNAME=keycloak.apps.home.myocp.net
